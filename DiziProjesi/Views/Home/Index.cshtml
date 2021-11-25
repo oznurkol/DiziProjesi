@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DiziProjesi.Models.Entity.MovieChapter>
+@{
+    ViewBag.Title = "Ana Sayfa";
+}
+
+<div class="content-wrapper p-t-2">
+    <section class="tv-series-list full-width pull-left">
+        <h3 class="title">  <span class="circle bd-green"></span> Yeni Eklenen Dizi Bölümleri</h3>
+        <div class="full-width pull-left poster-tv-list-container row">
+            @foreach (var item in Model)
+            {
+                @Html.Partial("_HomeMoviePartial", item)
+            }
+
+        </div>
+    </section>
+</div>

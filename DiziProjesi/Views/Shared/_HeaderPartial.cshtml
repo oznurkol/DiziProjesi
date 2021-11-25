@@ -1,0 +1,59 @@
+﻿@using DiziProjesi.Models
+@using DiziProjesi.Models.Entity
+
+<header id="site-header">
+    <a href="/Home/Index" class="logo pull-left m-r-3">
+        <img src="~/Content/assets/img/logo.png" alt="logo" width="160">
+    </a>
+    <a id="burger-button" class="btn" href="#menu"><i class="fa fa-bars"></i></a>
+    <div class="search-form pull-left m-r-1">
+        @using (Html.BeginForm("Search", "Movies")){ 
+            <i class="pe-7s-search" data-action="dizist-search"></i>
+            <input type="search" placeholder="arama yapın...." class="form-control" data-form="searchh" id="search" name="search">
+        }
+    </div>
+    <nav id="header-nav" class="menu-horizontal pull-left">
+        <ul class="nav menu-list m-t-1 m-b-0">
+            <li class="menu-item menu-active"><a href="/Home/Index" class="menu-link">Anasayfa</a></li>
+            @{
+                foreach (MovieType mt in Enum.GetValues(typeof(MovieType)))
+                {
+                    int value = (int)mt;
+
+                    <li class="menu-item"><a href="/Movies/Type/@value" class="menu-link">@mt Diziler</a></li>
+                }
+            }
+        </ul>
+    </nav>
+    @if (UserSession.User != null)
+    {
+
+        <div id="user-area" class="pull-right dd-holder">
+                
+            <a data-action="dizist-user-dropdown" class="user-dd">
+                <i class="fa fa-caret-down"></i><span class="username">@UserSession.User.UserName</span>
+            </a>
+            <div class="dropdown menu menu-vertical user-dropdown">
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <a href="/User/Index" class="menu-link">
+                            <i class="fa fa-history m-r-1"></i> Kullanıcı İşlemleri
+                        </a>
+                    </div><div class="menu-item">
+                        <a href="/User/Logout" class="menu-link">
+                            <i class="fa fa-sign-out m-r-1">
+                            </i>Çıkış Yap
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div id="user-area" class="pull-right">
+            <a href="/User/Register" class="btn"><i class="pe-7s-add-user"></i> <span>Kayıt Ol</span></a>
+            <a href="/User/Login" class="btn btn-s btn-outline border-radius-large btn-outline-primary"><i class="pe-7s-door-lock"></i> <span>Giriş Yap</span></a>
+        </div>
+    }
+</header>

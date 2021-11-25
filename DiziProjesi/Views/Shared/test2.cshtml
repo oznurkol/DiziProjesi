@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <div class="adv-728 pull-left"></div>
+        @Html.Partial("_PopularPartial")
+        <div class="adv-728 pull-left"></div>
+        @Html.Partial("_HomeMoviePartial")
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+
+</body>
+</html>
+
+
+<aside class="col-2-s pull-left">
+    <div class="widget-wrapper archive-type m-b-2">
+        <h4 class="title m-b-1"><span class="circle bd-mustard"></span> Arşiv Tipi  </h4>
+        <div class="m-t-2">
+            <select class="form-control" data-form="archive-type">
+                <option value="series" selected="">Diziler</option>
+                <option value="animes">Animeler</option>
+                <option value="asia">Asya Dizileri</option>
+            </select>
+        </div>
+    </div>
+    <div class="widget-wrapper archive-type m-b-2">
+        <h4 class="title m-b-1">
+            <span class="circle bd-mustard"></span> Yönetim
+        </h4>
+        <div class="m-t-2 m-b-2">
+            <div class="btn btn-xs btn-default" data-action="dizist-archive-genre">Kategori İşlemleri</div>
+            <div class="btn btn-xs btn-default" data-action="dizist-archive-genre">Film İşlemleri</div>
+            <div class="btn btn-xs btn-default" data-action="dizist-archive-genre">Kategori İşlemleri</div>
+        </div>
+        <h4 class="title m-b-1">
+            <span class="circle bd-mustard"></span> Yapım Yılı
+        </h4>
+        <div class="input-group m-t-2 m-b-2">
+            <input min="1900" max="2017" placeholder="Yapım yılı min." class="form-control" data-form="archive-year-min" type="number">
+            <input min="1900" max="2020" placeholder="Yapım yılı max." class="form-control" data-form="archive-year-max" type="number">
+        </div>
+        <h4 class="title m-b-1">  <span class="circle bd-mustard"></span> IMDb Puanı  </h4>
+        <div class="m-t-2 m-b-2">
+            <input min="1" max="10" step="0.1" placeholder="IMDb puanı min." data-form="archive-imdbmin" class="form-control" type="number">
+        </div>
+        <div class="btn btn-primary btn-block" data-action="dizist-archive-search"><i class="fa fa-search"></i> ARA</div>
+    </div>
+    <div></div>
+</aside>

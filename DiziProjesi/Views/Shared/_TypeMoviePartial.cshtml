@@ -1,0 +1,40 @@
+﻿@model DiziProjesi.Models.Entity.Movie
+@{
+    string date = Model.Ins_Time.Day + "/" + Model.Ins_Time.Month + "/" + Model.Ins_Time.Year;
+    string desc = Model.Desc.Substring(0, 200);
+
+}
+<article class="tv-series-list-box">
+    <figure class="tv-series-poster m-r-2">
+        <a href="/Movies/Movie/@Html.DisplayFor(model=>model.ID)">
+            <img src="@Html.DisplayFor(model => model.Image)">
+        </a>
+    </figure>
+    <div class="tv-series-list-info">
+        <h3 class="tv-series-title ff-2 pull-left">
+            <a href="/Movies/Movie/@Html.DisplayFor(model=>model.ID)">@Html.DisplayFor(model => model.Movie_Name)</a>
+        </h3>
+        <span class="tv-series-list-imdb pull-right">
+            <span class="btn btn-xs btn-orange">IMDb: <b>@Html.DisplayFor(model => model.IMDB_Point)</b></span>
+        </span>
+        <br><br>
+        <ul class="list-unstyled full-width">
+            <li><span class="tv-series-list-title">Yapım Yılı</span><span class="primary-color fw-bold">@Html.DisplayFor(model => model.Cons_Year)</span></li>
+            <li>
+                <span class="tv-series-list-title">Tür</span><span class="primary-color fw-bold">
+                    @{
+                        foreach (var c in Model.Categories)
+                        {
+                            @(c.Cat_Name + ",")
+                        }
+
+
+                    }
+                </span>
+            </li>
+            <li><span class="tv-series-list-title">Sezon / Bölüm</span><span class="primary-color fw-bold">@Html.DisplayFor(model => model.Chapters.Count) sezon</span></li>
+            <li><span class="tv-series-list-title">Favori</span><span class="primary-color fw-bold">@Html.DisplayFor(model => model.Favori.Count) kişinin favorisi</span></li>
+        </ul>
+        <p class="tv-series-list-desc text-muted-dark">@desc</p>
+    </div>
+</article>

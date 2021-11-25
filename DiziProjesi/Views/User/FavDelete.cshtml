@@ -1,0 +1,35 @@
+﻿@model DiziProjesi.Models.Entity.Movie
+@{
+    ViewBag.Title = "Favori Dizi Silme";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Title</h2>
+        <h3>Silmek istediğinize emin misiniz?</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>Favori</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Movie_Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Movie_Name)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            <div class="form-actions no-color">
+                @Helpers.Button("danger", string.Empty, "submit", "remove", " Sil")
+                @Helpers.LinkButton("/User/FavDelete", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön")
+            </div>
+        }
+    </div>
+</div>
+
+

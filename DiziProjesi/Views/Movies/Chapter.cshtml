@@ -1,0 +1,88 @@
+﻿@model DiziProjesi.Models.Entity.MovieChapter
+@{
+    ViewBag.Title = Model.Season.Movie.Movie_Name + " " + Model.Season.SeasonName + " " + Model.ChapterName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper p-t-2">
+    <div class="row">
+        <div class="col-1 pull-left video-col">
+            <div class="title">
+                <h1 class="h4 m-b-0 fw-regular">
+                    <span class="circle bd-green"></span>
+                    <a href="/Movies/Movie/@Html.DisplayFor(m=> m.Season.Movie.ID)" class="title-link">@Html.DisplayFor(m => m.Season.Movie.Movie_Name)</a>
+                </h1>
+                <h2 class="h6 m-b-0 fw-regular">
+                    @Html.DisplayFor(m => m.Season.SeasonName) @Html.DisplayFor(m => m.ChapterName)
+                </h2>
+                <nav class="breadcrumb-nav">
+                    <ul class="list-inline m-b-0">
+                        <li class="list-item">
+                            <a href="/Home" class="breadcrumb-link">
+                                Ana Sayfa
+                                <span class="sep">›</span>
+                            </a>
+                        </li>
+                        <li class="list-item">
+                            <a href="/Movies/Movie/@Html.DisplayFor(m=> m.Season.Movie.ID)" class="breadcrumb-link">@Html.DisplayFor(m => m.Season.Movie.Movie_Name)<span class="sep">›</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <section id="single-page">
+
+                    <iframe width="560" height="315" src="@Html.DisplayFor(model => model.PlayerLink)" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                
+            </section>
+            <section id="comments" class="m-t-3 pull-left full-width">
+                <h4 class="title fw-medium">
+                    <span class="circle bd-blue"></span>
+                    Bölüm hakkında ne dediler?
+                </h4>
+                @using (Html.BeginForm())
+                {
+                    <p>
+                        @Html.HiddenFor(model => model.ID)
+                        <textarea name="comment" id="comment" rows="3" class="form-control" placeholder="Bu bölüm hakkında ki yorumunuzu paylaşın..." data-form="comment-content"></textarea>
+                    </p>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-s btn-outline btn-purple comment-send">
+                            <i class="fa fa-check"></i> YORUMU GÖNDERİN
+                        </button>
+                        <div class="comment-spoiler text-left">
+                            <input class="comment-spoiler-checkbox" data-checkbox="spoiler" type="checkbox" id="spoiler" name="spoiler"><label class="comment-spoiler m-b-0">Bu yorum bölüm hakkında <b class="primary-color">Spoiler</b> içeriyor mu?</label>
+                        </div>
+                    </div>
+                }
+                <div class="comment-list-wrapper">
+                    <ol class="comment-list list-unstyled">
+                        <li class="comment">
+                            <div class="comment-container">
+                                <div class="comment-bottom-bar"></div>
+                            </div>
+                        </li>
+                        @foreach (var i in Model.Comments)
+                        {
+                            <li class="comment">
+                                <div class="comment-container">
+                                    <div class="comment-header">
+                                        <span class="user-role">
+                                            @i.User.UserName
+                                        </span>
+
+                                    </div>
+                                    @if (i.isSpoiler)
+                                    {
+                                        <h2>Bu yorum spoiler içerir!</h2>
+                                    }
+                                    <div class="comment-entry"><p>@i.Post_Com</p></div>
+                                    <div class="comment-bottom-bar"></div>
+                                </div>
+                            </li>
+                        }
+
+                    </ol>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

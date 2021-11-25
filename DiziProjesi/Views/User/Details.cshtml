@@ -1,0 +1,86 @@
+﻿@model DiziProjesi.Models.Entity.User
+@{
+    ViewBag.Title = "Kullanıcı Detayları";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Title</h2>
+        <h3>Kullanıcı Hakkında Bilgiler</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>Kullanıcı Bilgileri</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EMail)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EMail)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ins_Time)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ins_Time)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Up_Time)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Up_Time)
+            </dd>
+        </dl>
+        
+    </div>
+    <div class="col-md-12">
+        <h4>Favori Dizileri</h4>
+        <hr />
+        <table class="table">
+            @foreach (var item in Model.FavoriteList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Movie_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ins_Time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Up_Time)
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <h4>Kullanıcı Yorumları</h4>
+        <hr />
+        <table class="table">
+            @foreach (var item in Model.Comments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Post_Com)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ins_Time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Up_Time)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+

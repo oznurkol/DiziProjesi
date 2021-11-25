@@ -1,0 +1,127 @@
+﻿@model DiziProjesi.Models.Entity.Movie
+@using DiziProjesi.Models
+@using DiziProjesi.Models.Entity
+@using DiziProjesi.Models.Business
+@{
+    ViewBag.Title = Model.Movie_Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper p-t-2">
+    <section class="tv-series-profile-content tv-series-overview m-y-2">
+        <figure class="tv-series-poster m-r-2">
+            <img src="@Html.DisplayFor(model => model.Image)" alt="">
+
+            @if (UserSession.User != null)
+            {
+                
+                    UserManager userManager = new UserManager();
+                    Movie m = UserSession.User.FavoriteList.FirstOrDefault(x => x.ID == Model.ID);
+                    if (m == null)
+                    {
+                        <div data-action="dizist-favorite-serie" data-id="57f6950ae663e574177b06c7" class="btn btn-xs btn-red full-width">
+                            <a href="/User/FavCreate/@Html.DisplayFor(model => model.ID)"><i class="fa fa-heart-o"></i> <span>Favorilerime ekle</span></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div data-action="dizist-favorite-serie" data-id="57f6950ae663e574177b06c7" class="btn btn-xs btn-red full-width">
+                            <a href="/User/FavDelete/@Html.DisplayFor(model => model.ID)"><i class="fa fa-heart-o"></i> <span>Favorilerimden Çıkart</span></a>
+                        </div>
+                    }
+
+                
+
+                    }
+
+        </figure>
+        <div class="tv-series-profile-info">
+            <h1 class="tv-series-title ff-2">@Html.DisplayFor(m => m.Movie_Name)</h1>
+            <p class="tv-series-profile-tag">
+                <span class="btn btn-xs btn-outline">@Html.DisplayFor(m => m.Cons_Year)</span>
+                <span class="btn btn-xs btn-outline">
+                    @{
+                        foreach (var c in Model.Categories)
+                        {
+                            @(c.Cat_Name + ",")
+                        }
+                    }
+
+                </span>
+                <span class="btn btn-xs btn-orange">IMDb: <b>@Html.DisplayFor(m => m.IMDB_Point)</b></span>
+            </p>
+            <hr>
+            <div class="tv-series-desc m-t-3">
+                <p>@Html.DisplayFor(m => m.Desc)</p>
+            </div>
+        </div>
+    </section>
+    <section class="tv-seasons-container full-width pull-left m-y-3">
+        
+
+        <div class="tab-content">
+            @{
+                            if (Model.Chapters.Count > 0)
+                            {
+                                bool ilk = true;
+                                int x = 0;
+                                foreach (var i in Model.Chapters)
+                                {
+                                    string ss = "#season" + (x++);
+                                    int k = 0;
+                                    if (ilk)
+                                    {
+                            <div id="@ss" class="tab-pane fade in active">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Bölüm Adı</th>
+                                            <th scope="col">Eklenme Tarihi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        @foreach (var y in i.Chapters)
+                        {
+                                            k++;
+                                            <tr>
+                                                <th scope="row">@k</th>
+                                                <td><a href="/Movies/Chapter/@y.ID">@i.SeasonName - @y.ChapterName</a></td>
+                                                <td>@y.Ins_Time</td>
+                                            </tr>
+                                        }
+                                        </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="@ss" class="tab-pane fade">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Bölüm Adı</th>
+                                            <th scope="col">Eklenme Tarihi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var y in i.Chapters)
+                                        {
+                                            k++;
+                                            <tr>
+                                                <th scope="row">@k</th>
+                                                <td><a href="/Movies/Chapter/@y.ID">@i.SeasonName - @y.ChapterName</a></td>
+                                                <td>@y.Ins_Time</td>
+                                            </tr>
+                                        }
+                                </table>
+                            </div>
+                        }
+                    }
+                }
+            }
+           
+        </div>
+    </section>
+</div>

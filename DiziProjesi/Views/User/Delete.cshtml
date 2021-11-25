@@ -1,0 +1,51 @@
+﻿@model DiziProjesi.Models.Entity.User
+@{
+    ViewBag.Title = "Kullanıcı Silme";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Title</h2>
+        <h3>Silmek istediğinize emin misiniz?</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>Kullanıcı</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EMail)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EMail)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ins_Time)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ins_Time)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Up_Time)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Up_Time)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            <div class="form-actions no-color">
+                @Helpers.Button("danger", string.Empty, "submit", "remove", " Sil")
+                @Helpers.LinkButton("/User/List", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön")
+            </div>
+        }
+    </div>
+</div>

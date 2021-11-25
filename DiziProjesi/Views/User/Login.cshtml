@@ -1,0 +1,40 @@
+﻿@model DiziProjesi.Models.Entity.User
+@{
+    ViewBag.Title = "Üye Girişi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper p-t-2">
+    @Html.ValidationSummary(false)
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Login", "User"))
+            {
+                <h4>Kullanıcı Girişi</h4>
+                <hr />
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Helpers.Button("success", "success", string.Empty, "submit", "plus", " Giriş Yap")
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <br />
+
+    </div>
+</div>

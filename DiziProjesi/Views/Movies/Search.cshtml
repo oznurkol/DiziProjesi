@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DiziProjesi.Models.Entity.Movie>
+@{
+    ViewBag.Title = "Arama";
+    Layout = "~/Views/Shared/_LayoutMovie.cshtml";
+}
+<div class="col-1-s pull-right">
+    <div class="content-wrapper p-t-2">
+        <section class="tv-series-list full-width pull-left">
+
+            <div class="full-width pull-left poster-tv-list-container row">
+                @foreach (var item in Model)
+            {
+                    @Html.Partial("_TypeMoviePartial", item)
+                }
+
+            </div>
+        </section>
+    </div>
+</div>

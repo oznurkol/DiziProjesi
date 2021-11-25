@@ -1,0 +1,59 @@
+﻿@model DiziProjesi.Models.Entity.MovieChapter
+@{
+    ViewBag.Title = "Bölüm Silme";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Title</h2>
+        <h3>Silmek istediğinize emin misiniz?</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>Bölüm</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Season.Movie.Movie_Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Season.Movie.Movie_Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Season.SeasonName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Season.SeasonName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ChapterName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ChapterName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Ins_Time)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Ins_Time)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Up_Time)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Up_Time)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            <div class="form-actions no-color">
+                @Helpers.Button("danger", string.Empty, "submit", "remove", " Sil")
+                @Helpers.LinkButton("/Category/Index", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön")
+            </div>
+        }
+    </div>
+</div>
+
+

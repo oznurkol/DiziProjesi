@@ -1,0 +1,65 @@
+﻿@using DiziProjesi.Models
+@Html.Partial("_HeadPartial")
+<body>
+    <main id="main-wrapper">
+        @Html.Partial("_HeaderPartial")
+
+
+        <div id="page-archive" class="content-wrapper p-t-2">
+            <div class="row">
+                @if (UserSession.User != null)
+                {
+                    <aside class="col-2-s pull-left">
+                        @if (UserSession.User.isAdmin)
+                        {
+
+                            <div class="widget-wrapper archive-type m-b-2">
+                                <h4 class="title m-b-1">
+                                    <span class="circle bd-mustard"></span> Yönetim
+                                </h4>
+                                <div class="m-t-2">
+                                    <div class="form-group">
+                                        <div class="btn btn-xs btn-default" data-action="dizist-archive-genre"><a href="/Category">Kategori İşlemleri</a></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="btn btn-xs btn-default" data-action="dizist-archive-genre"><a href="/Movie">Dizi İşlemleri</a></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="btn btn-xs btn-default" data-action="dizist-archive-genre"><a href="/Season">Sezon İşlemleri</a></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="btn btn-xs btn-default" data-action="dizist-archive-genre"><a href="/Chapter">Bölüm İşlemleri</a></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="btn btn-xs btn-default" data-action="dizist-archive-genre"><a href="/User/List">Kullanıcı İşlemleri</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="widget-wrapper archive-type m-b-2">
+                            <h4 class="title m-b-1">
+                                <span class="circle bd-mustard"></span> Kullanıcı İşlemleri
+                            </h4>
+                            <div class="m-t-2">
+                                <div class="form-group">
+                                    <div class="btn btn-xs btn-default" data-action="dizist-archive-genre"><a href="/User">Kullanıcı Paneli</a></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="btn btn-xs btn-default" data-action="dizist-archive-genre"><a href="/User/Password">Kullanıcı İşlemleri</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                }
+                <div class="col-10-s pull-left">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        @Html.Partial("_FooterPartial")
+
+        <div class="popup-wrapper"></div>
+
+    </main>
+</body>
+</html>

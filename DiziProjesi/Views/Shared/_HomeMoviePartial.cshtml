@@ -1,0 +1,16 @@
+﻿@model DiziProjesi.Models.Entity.MovieChapter
+@{
+    string date = Model.Ins_Time.Day+"/"+Model.Ins_Time.Month+"/"+Model.Ins_Time.Year;
+}
+            <article class="article-wide-poster grid-five">
+                <figure class="tv-poster">
+                    <a href="/Movies/Chapter/@Html.DisplayFor(model => model.ID)">
+                        <img src="@Html.DisplayFor(model => model.Season.Movie.Image)" class='tv-poster-img'>
+                        <div class="article-release"><span>@date</span></div><div class="h-series-lang tr"></div>
+                        <figcaption class='thumbnail-figcaption'>
+                            <span class="poster-title link-unstyled text-overflow">@Html.DisplayFor(model => model.Season.Movie.Movie_Name)</span>
+                            <span class="poster-alt-title text-muted-light text-overflow">@Html.DisplayFor(model => model.Season.SeasonName) @Html.DisplayFor(model => model.ChapterName)</span>
+                        </figcaption><div class="thumbnail-gradient"></div>
+                    </a>
+                </figure>
+            </article>

@@ -1,0 +1,40 @@
+﻿@using DiziProjesi.Models
+@using DiziProjesi.Models.Business
+@using DiziProjesi.Models.Entity
+@{ 
+    CategoryManager categoryManager = new CategoryManager();
+    MovieManager movieManager = new MovieManager();
+    List<Category> c = categoryManager.List();
+}
+@Html.Partial("_HeadPartial")
+<body>
+    <main id="main-wrapper">
+        @Html.Partial("_HeaderPartial")
+        <div id="page-archive" class="content-wrapper p-t-2">
+            <div class="row">
+                    <aside class="col-2-s pull-left">
+
+                            <div class="widget-wrapper archive-type m-b-2">
+                                <h4 class="title m-b-1">
+                                    <span class="circle bd-mustard"></span> Kategoriler
+                                </h4>
+                                <div class="m-t-2">
+                                    @{
+                                        foreach (var item in c)
+                                        {
+                                                <div class="btn btn-xs btn-default" data-action="dizist-archive-genre"><a href="/Movies/Category/@item.ID">@item.Cat_Name</a></div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                    </aside>
+                
+
+                    @RenderBody()
+            </div>
+        </div>
+        @Html.Partial("_FooterPartial")
+        <div class="popup-wrapper"></div>
+    </main>
+</body>
+</html>
